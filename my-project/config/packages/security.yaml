@@ -1,0 +1,40 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        # this internal class is used by Symfony to represent in-memory users
+        Symfony\Component\Security\Core\User\User: 'auto'
+
+    providers:
+        managers_in_memory:
+            memory:
+                users:
+                    # nuzhnopomenat123
+                    someuser1: { password: '$2y$13$mrChdykH12tSyeBV8I6dr.7jLo2c5zWdFonaje.8MnG8LhcLQSDXe', roles: ['ROLE_MANAGER'] }
+                    someuser2: { password: '$2y$13$mrChdykH12tSyeBV8I6dr.7jLo2c5zWdFonaje.8MnG8LhcLQSDXe', roles: ['ROLE_MANAGER'] }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: lazy
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+        manager:
+            provider: managers_in_memory
+            anonymous: false
+            http_basic:
+                realm: Secured Area
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: '^/manager', roles: ROLE_MANAGER }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

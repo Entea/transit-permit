@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h2>Информация заявки </h2>
+    <br />
+    <table class="table">
+        <tr>
+            <td>Дата создания</td>
+            <td>{{ application.createdAt | date }}</td>
+        </tr>
+        <tr>
+            <td>Статус заявки</td>
+            <td>
+                {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
+                    <span class="badge badge-secondary">В очереди</span>
+                {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
+                    <span class="badge badge-success">Принятно</span>
+                {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
+                    <span class="badge badge-danger">Отклонено</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% if application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
+            <tr>
+                <td>Причина отклонения</td>
+                <td> {{ application.declinedReason }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td>ФИО директора</td>
+            <td>{{ application.directorFullName }}</td>
+        </tr>
+        <tr>
+            <td>ИИН компании</td>
+            <td>{{ application.companyIin }}</td>
+        </tr>
+        <tr>
+            <td>Наименование компании</td>
+            <td>{{ application.companyName }}</td>
+        </tr>
+        <tr>
+            <td>Номер телефона</td>
+            <td>{{ application.phoneNumber }}</td>
+        </tr>
+        <tr>
+            <td>Район планируемых перемещений</td>
+            <td>{{ application.movementArea }}</td>
+        </tr>
+        <tr>
+            <td>Email для получения подтверждения</td>
+            <td>{{ application.email }}</td>
+        </tr>
+    </table>
+
+    <h2>Транспорт</h2>
+    <br />
+
+    <table class="table">
+        {% for car in application.cars %}
+            <tr>
+                <td>ФИО сотрудника</td>
+                <td>{{ car.driverFullName }}</td>
+            </tr>
+            <tr>
+                <td>Марка авто и госномер</td>
+                <td>{{ car.carIdentifier }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>Транспорт не указан</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
+
