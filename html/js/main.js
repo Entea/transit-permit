@@ -19,7 +19,7 @@
 
 
         $('#add_more').click(function (e) {
-            const clone = $('.for-copy').clone();
+            const clone = $('.for-copy').first().clone();
             $(clone).insertBefore($('#add_more'));
         });
 

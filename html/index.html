@@ -21,14 +21,14 @@
                     <div class="col">
                         <div>
                             <label for="firstName">ФИО директора</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                            <input type="text" name="director_name"  class="form-control" id="firstName" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Поле обязательно
                             </div>
                         </div>
                         <div>
                             <label for="lastName">Наименование компании</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                            <input type="text" name="company_name" class="form-control" id="lastName" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Поле обязательно
                             </div>
@@ -36,7 +36,7 @@
 
                         <div>
                             <label for="directorPhone">Номер телефона</label>
-                            <input type="text" class="form-control" id="directorPhone" placeholder="" value="" required>
+                            <input type="text" name="company_phone" class="form-control" id="directorPhone" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Поле обязательно
                             </div>
@@ -55,6 +55,7 @@
                         <div>
                             <label for="email">Email для получения подтверждения</label>
                             <input type="email" class="form-control" id="email" placeholder="you@example.com" value=""
+                                   name="email"
                                    required>
                             <div class="invalid-feedback">
                                 Поле обязательно
@@ -74,7 +75,7 @@
                             <div class="row align-items-end">
                                 <div class="col">
                                     <label for="car_1">Марка авто и госномер</label>
-                                    <input name="car[]" type="text" class="form-control" id="car_1" placeholder="" value="" required>
+                                    <input name="car[]" type="text" class="form-control" id="car_1" placeholder="пример: Toyota Ist, 01KG111ABC" value="" required>
                                     <div class="invalid-feedback">
                                         Поле обязательно
                                     </div>
