@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Выдача транспортных листов</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Форма для юридических лиц</h1>
+        </div>
+    </section>
+    <section>
+        <form class="needs-validation" novalidate>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <label for="firstName">ФИО директора</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Поле обязательно
+                            </div>
+                        </div>
+                        <div>
+                            <label for="lastName">Наименование компании</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Поле обязательно
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="directorPhone">Номер телефона</label>
+                            <input type="text" class="form-control" id="directorPhone" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Поле обязательно
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="area">Район планируемых перемещений</label>
+                            <textarea class="form-control" id="area" placeholder="" value="" required
+                                      name="area"></textarea>
+                            <div class="invalid-feedback">
+                                Поле обязательно
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <label for="email">Email для получения подтверждения</label>
+                            <input type="email" class="form-control" id="email" placeholder="you@example.com" value=""
+                                   required>
+                            <div class="invalid-feedback">
+                                Поле обязательно
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="mb-4 for-copy">
+                            <div>
+                                <label for="workerFio_1">ФИО сотрудника</label>
+                                <input name="worker_fio[]" type="text" class="form-control" id="workerFio_1" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Поле обязательно
+                                </div>
+                            </div>
+                            <div class="row align-items-end">
+                                <div class="col">
+                                    <label for="car_1">Марка авто и госномер</label>
+                                    <input name="car[]" type="text" class="form-control" id="car_1" placeholder="" value="" required>
+                                    <div class="invalid-feedback">
+                                        Поле обязательно
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="button" class="btn btn-primary btn-sm delete-row">Удалить</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="add_more" type="button" class="btn btn-secondary btn-sm">Добавить еще</button>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <hr />
+                        <button class="btn btn-primary" type="submit">Просмотр</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+<script src="/jquery-3.4.1.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+</html>
