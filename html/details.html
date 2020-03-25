@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Заявка {{ request_uid }} </title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Заявка {{ request_uid }}</h1>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <!-- if approved, show date -->
+                        <div>Дата: {{ approval_date }}</div>
+                        <div>Статус: {{ status }}</div>
+                    </div>
+                    <div>
+                        <div>Наименование компании</div>
+                        <div>{{ company_name }}</div>
+                    </div>
+
+                    <div>
+                        <div>ФИО директора</div>
+                        <div>{{ director_firstname }} {{ director_lastname }}</div>
+                    </div>
+
+                    <div>
+                        <div>Номер телефона</div>
+                        <div>{{ phone_number }}</div>
+                    </div>
+
+                    <div>
+                        <div>Район планируемых перемещений</div>
+                        <div>{{ transit_area }}</div>
+                    </div>
+                </div>
+
+                <!-- Loop through employees list -->
+                
+                <div class="col">
+                    <div>
+                      <strong>Сотрудники</strong>
+                    </div>
+                    <div class="mb-4">
+                        <div>
+                            <div>{{ employee_full_name }}</div>
+                        </div>
+                        <!-- If has a car, show it -->
+                        <div>
+                            <div>{{ car_details_and_number }}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+<script src="/jquery-3.4.1.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+</html>
