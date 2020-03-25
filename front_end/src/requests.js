@@ -1,20 +1,8 @@
-let API = "https://postexpress.org:443/api/v1/";
+
 
 let token;
 if (localStorage.getItem("expressUserData")) {
   token = JSON.parse(localStorage.getItem("expressUserData"));
-}
-
-if (window.location.pathname === "/admin") {
-  window.location.href = "/admin/";
-}
-
-if (window.location.pathname === "/warehouse_admin") {
-  window.location.href = "/warehouse_admin/";
-}
-
-if (window.location.pathname === "/distribution_admin") {
-  window.location.href = "/distribution_admin/";
 }
 
 async function getData(url) {
