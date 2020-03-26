@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1>Выдача разрешений на передвижение</h1>
+            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <p>
+                <a class="btn btn-primary my-2" href="{{ url('application_create') }}">Заполнить форму заявления</a>
+                <a href="#" class="btn btn-secondary my-2">Какая-то кнопка</a>
+            </p>
+
+            <h3>Найти по номеру</h3>
+            <br />
+            <div class="col-5" style="margin: 0 auto">
+                {{ form_start(form, {method: 'post', action: url('application_from_home')}) }}
+
+                {{ form_row(form.uid) }}
+                {{ form_row(form.save) }}
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

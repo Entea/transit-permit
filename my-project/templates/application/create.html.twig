@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+{% form_theme form '_form/bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block body %}
+
+    <h2>Заявление на выдачу разрешения на передвижение</h2>
+
+    <br /><br />
+
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.directorFullName) }}
+            {{ form_row(form.companyIin) }}
+            {{ form_row(form.companyName) }}
+            {{ form_row(form.phoneNumber) }}
+            {{ form_row(form.movementArea) }}
+            {{ form_row(form.email) }}
+        </div>
+        <div class="col">
+            <ul class="cars" data-prototype="{{ form_widget(form.cars.vars.prototype)|e('html_attr') }}">
+                {% for car in form.cars %}
+                    <li>{{ form_row(car.driverFullName) }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        function addCarForm($collectionHolder, $newLinkLi) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolder.data('prototype');
+
+            // get the new index
+            var index = $collectionHolder.data('index');
+
+            var newForm = prototype;
+            // You need this only if you didn't set 'label' => false in your cars field in TaskType
+            // Replace '__name__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__name__label__/g, index);
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            newForm = newForm.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolder.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a car" link li
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
+
+        var $collectionHolder;
+
+        // setup an "add a car" link
+        var $addCarButton = $('<button type="button" class="btn btn-primary add_car_link">Добавить сотрудника</button>');
+        var $newLinkLi = $('<div></div>').append($addCarButton);
+
+        jQuery(document).ready(function () {
+            // Get the ul that holds the collection of cars
+            $collectionHolder = $('ul.cars');
+
+            // add the "add a car" anchor and li to the cars ul
+            $collectionHolder.append($newLinkLi);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addCarButton.on('click', function (e) {
+                // add a new car form (see next code block)
+                addCarForm($collectionHolder, $newLinkLi);
+            });
+
+            // add one worker by default
+            addCarForm($collectionHolder, $newLinkLi);
+        });
+
+    </script>
+
+{% endblock %}
