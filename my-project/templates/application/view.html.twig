@@ -15,7 +15,7 @@
     <table class="table">
         <tr>
             <td>Дата создания</td>
-            <td>{{ application.createdAt | date }}</td>
+            <td>{{ application.createdAt | date('Y-m-d H:i') }}</td>
         </tr>
         <tr>
             <td>Статус заявления</td>
@@ -62,25 +62,25 @@
     </table>
 
     <div class="subtitle-title-block">
-        <h3>Сотрудники</h3>
+        <h3>Транспортные средства</h3>
     </div>
 
-    <table class="table">
-        {% for car in application.cars %}
-            <tr>
-                <td>ФИО сотрудника</td>
-                <td>{{ car.driverFullName }}</td>
-            </tr>
-            <tr class="bordered-line">
-                <td>Марка авто и госномер</td>
-                <td>{{ car.carIdentifier }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td>Транспорт не указан</td>
-            </tr>
-        {% endfor %}
-    </table>
+    <div class="subtitle-title-container">
+        <table class="table">
+            <thead>
+            <th>Марка авто и госномер</th>
+            </thead>
+            {% for car in application.cars %}
+                {#<tr>
+                    <td>ФИО сотрудника</td>
+                    <td>{{ car.driverFullName }}</td>
+                </tr>#}
+                <tr>
+                    <td>{{ car.carIdentifier }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 {% endblock %}
 

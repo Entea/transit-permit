@@ -31,7 +31,7 @@ class SearchType extends AbstractType
             ->add('directorFullName', TextType::class, ['label' => 'ФИО директора', 'required' => false])
             ->add('companyIin', TextType::class, ['label' => 'ИИН компании', 'required' => false])
             ->add('companyName', TextType::class, ['label' => 'Наименование компании', 'required' => false])
-            ->add('driverFullName', TextType::class, ['label' => 'ФИО сотрудника', 'required' => false])
+            /*->add('driverFullName', TextType::class, ['label' => 'ФИО сотрудника', 'required' => false])*/
             ->add('carIdentifier', TextType::class, ['label' => 'Марка авто и госномер', 'required' => false])
             ->add('save', SubmitType::class, ['label' => 'Отправить'])
         ;

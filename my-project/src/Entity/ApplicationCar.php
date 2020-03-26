@@ -19,11 +19,11 @@ class ApplicationCar
     private $id;
 
     /**
-     * @Assert\NotBlank
+     * @@Assert\NotBlank
      *
      * @ORM\Column(type="string", length=255)
      */
-    private $driverFullName;
+    private $driverFullName = '';
 
     /**
      * @Assert\NotBlank
