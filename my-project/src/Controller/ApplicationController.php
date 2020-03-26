@@ -101,8 +101,16 @@ class ApplicationController extends AbstractController
         if ($application === null) {
             return $this->render('application_not_found.html.twig');
         }
+
+        $url = $this->generateUrl(
+            'application_view',
+            array('uid' => $application->getUid()),
+            UrlGeneratorInterface::ABSOLUTE_URL
+        );
+
         return $this->render('application/view.html.twig', [
             'application' => $application,
+            'url' => $url
         ]);
     }
 

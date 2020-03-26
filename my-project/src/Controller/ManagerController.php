@@ -127,12 +127,11 @@ class ManagerController extends AbstractController
             array('uid' => $application->getUid()),
             UrlGeneratorInterface::ABSOLUTE_URL
         );
-        $qrCode = new QrCode($url);
 
-        $html = $this->renderView('emails/result.html.twig', ['application' => $application, 'qrData' => $qrCode->writeDataUri(), 'url' => $url]);
+        $html = $this->renderView('emails/result.html.twig', ['application' => $application, 'url' => $url]);
 
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('send@example.com')
+        $message = (new \Swift_Message('Заявка на разрешение передвижения'))
+            ->setFrom('info@mvdmail.me')
             ->setTo($application->getEmail())
             ->setBody(
                 $html,
