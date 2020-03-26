@@ -3,13 +3,15 @@
 
 {% block page_title %}
     <div class="manager-title-block">
-        <div class="container"><h3>Просмотр заявления</h3></div>
+        <div class="container"><h3>Просмотр заявления</h3>
+            <a class="btn-info btn" href="/manager/">Назад к списку</a>
+        </div>
     </div>
+
 {% endblock %}
 
 
 {% block body %}
-
 
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}
@@ -26,12 +28,12 @@
             <td>{{ application.createdAt | date }}</td>
         </tr>
         <tr>
-            <td>Статус заявки</td>
+            <td>Статус заявления</td>
             <td>
                 {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
                     <span class="badge badge-secondary">В очереди</span>
                 {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
-                    <span class="badge badge-success">Принятно</span>
+                    <span class="badge badge-success">Принято</span>
                 {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
                     <span class="badge badge-danger">Отклонено</span>
                 {% endif %}
@@ -108,7 +110,7 @@
                     {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
                         <span class="badge badge-secondary">В очереди</span>
                     {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
-                        <span class="badge badge-success">Принятно</span>
+                        <span class="badge badge-success">Принято</span>
                     {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
                         <span class="badge badge-danger">Отклонено</span>
                     {% endif %}
@@ -146,6 +148,9 @@
 
     {{ form_end(form) }}
 
+
+
+    <a class="btn-info btn" href="/manager/">Назад к списку</a>
 
 {% endblock %}
 

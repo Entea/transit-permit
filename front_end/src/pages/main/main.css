@@ -1,8 +1,57 @@
 @font-face {
-    font-family: Montserrat-Regular;
-    src: url(../../fonts/Montserrat-Regular.ttf);
+    font-family: Montserrat-Medium;
+    src: url(./../../fonts/Montserrat-Medium.ttf);
 }
 
-body {
+.formRegistration {
+    background: #f4f7fa;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 950px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+}
+
+.contacts-form-label {
+    font-family: Montserrat-medium;
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: .03em;
+    color: #000;
+}
+
+.contacts-form__input {
+    border: 1px solid #3f3d56 !important;
+    box-sizing: border-box !important;
+    border-radius: 6px !important;
+    height: 45px !important;
+    font-size: 14px !important;
     font-family: Montserrat-Regular;
+    box-shadow: none !important;
+}
+
+.maxInput {
+    max-width: 330px;
+    margin: auto;
+}
+
+@media screen and (max-width: 990px) {
+    .maxInput {
+        max-width: 100%;
+        margin: auto;
+    }
+}
+
+/* for react-tel-input */
+.react-tel-input .form-control {
+    width: 100%;
+}
+
+
+.next__button {
+    background-color: #FFF !important;
+    border: 1px solid #4F4F4F !important;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: #000 !important;
+    width: 100%;
 }

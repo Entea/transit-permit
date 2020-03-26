@@ -15,7 +15,9 @@
             <h3>Информация о компании</h3>
         </div>
 
-        {{ form_start(form) }}
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        {{ form_errors(form) }}
+
 
         <div class="subtitle-title-container">
             {{ form_row(form.directorFullName) }}
@@ -39,12 +41,17 @@
         </div>
 
         <div class="subtitle-title-container">
-            <table class="table cars" data-prototype="{{ form_widget(form.cars.vars.prototype)|e('html_attr') }}">
-                <tbody></tbody>
-            </table>
+            <ul class="cars" data-prototype="{{ form_widget(form.cars.vars.prototype)|e('html_attr') }}">
+{#                {% for car in form.cars %}
+                    <li>
+                        {{ form_row(car.driverFullName) }}
+                        {{ form_row(car.carIdentifier) }}
+                    </li>
+                {% endfor %}#}
+            </ul>
         </div>
 
-        {{ form_row(form.save) }}
+        {{ form_widget(form.save) }}
 
         {{ form_end(form) }}
     </div>
@@ -75,10 +82,10 @@
             $collectionHolder.data('index', index + 1);
 
             // Display the form in the page in an li, before the "Add a car" link li
-            var $tr = $('<tr><td>'+newForm+'</td></tr>'), $td = $tr.find('td');
-            $('.cars tbody').after($tr);
+            var $newFormLi = $('<li></li>').append(newForm);
+            $('.cars').append($newFormLi);
 
-            addCarFormDeleteLink($td);
+            addCarFormDeleteLink($newFormLi);
         }
 
         function addCarFormDeleteLink($carFormLi) {
@@ -111,7 +118,7 @@
                 addCarForm($collectionHolder, $newLinkLi);
             });
 
-            $collectionHolder.find('tr td').each(function() {
+            $collectionHolder.find('li').each(function() {
                 addCarFormDeleteLink($(this));
             });
 

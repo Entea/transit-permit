@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ApplicationRepository")
@@ -28,31 +29,44 @@ class Application
     private $uid;
 
     /**
+     * @Assert\NotBlank
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $companyName;
 
     /**
+     * @Assert\NotBlank
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $companyIin;
 
     /**
+     * @Assert\NotBlank
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $directorFullName;
 
     /**
+     * @Assert\NotBlank
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $phoneNumber;
 
     /**
+     * @Assert\NotBlank
+     *
      * @ORM\Column(type="text", length=255)
      */
     private $movementArea;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Email
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $email;
@@ -98,6 +112,8 @@ class Application
     private $updatedAt;
 
     /**
+     * @Assert\NotBlank
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\ApplicationCar", mappedBy="application", cascade={"persist"}))
      */
     private $cars;

@@ -15,8 +15,8 @@ class FindByUidType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('uid', TextType::class, ['label' => 'Номер заявления'])
-            ->add('save', SubmitType::class, ['label' => 'Найти'])
+            ->add('uid', TextType::class, ['label' => false])
+            ->add('save', SubmitType::class, ['label' => 'Найти заявление'])
         ;
     }
 }

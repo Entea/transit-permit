@@ -1,0 +1,108 @@
+.scanLogin .formRegistration {
+    background: #fff;
+}
+
+
+.scanLogin .contacts-form__button {
+    color: #fff !important;
+    background: #1D3446 !important;
+}
+
+.title-scan-sm {
+    display: none;
+}
+
+.scanCode {
+    width: 100%;
+    max-width: 500px;
+}
+
+.scanResult {
+    display: flex;
+    flex-direction: column;
+}
+
+.barScan {
+    height: 500px;
+    max-width: 500px;
+}
+
+.scanBtn {
+    margin-top: auto;
+}
+
+@media screen and (max-width: 990px) {
+    .scan-form {
+        max-width: 400px;
+        margin: 0 auto !important;
+        flex-direction: column-reverse;
+    }
+
+    .scanCode,
+    .barScan {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .barScan {
+        height: 100%;
+        min-height: 302px !important;
+    }
+
+    .scan-title {
+        display: none;
+    }
+
+    .title-scan-sm {
+        display: block;
+    }
+
+    .scan-select-input {
+        border-right: 1px solid #1D3446 !important;
+        border-radius: 6px !important;
+    }
+
+    .scan-tracking-btn {
+        width: 100%;
+        font-size: 14px !important;
+    }
+}
+
+.select-form {
+    max-width: 700px !important;
+}
+
+.selectImg {
+    width: 50%;
+}
+
+
+.scanResult {
+    margin-left: 1.5em !important;
+}
+
+.scan-tracking-btn {
+    font-size: 1.2em !important;
+}
+
+@media screen and (max-width: 600px) {
+    .scanResult {
+        margin-left: 0px !important;
+        margin-top: 20px;
+    }
+}
+
+.scanBtn {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    background-color: #f7a810 !important;
+    color: #1d3446 !important;
+    font-size: 16px !important;
+    border-radius: 30px !important;
+    border: none !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, .16);
+    overflow: hidden;
+    width: 272px;
+    height: 50px;
+}

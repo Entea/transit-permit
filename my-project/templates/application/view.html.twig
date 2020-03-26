@@ -1,21 +1,29 @@
 {% extends 'base.html.twig' %}
 
+{% block page_title %}
+    <div class="title-block">
+        <div class="container"><h3>Заявление на выдачу разрешения на передвижение</h3></div>
+    </div>
+{% endblock %}
+
 {% block body %}
 
-    <h2>Информация заявки </h2>
-    <br />
+    <div class="subtitle-title-block">
+        <h3>Информация о компании</h3>
+    </div>
+
     <table class="table">
         <tr>
             <td>Дата создания</td>
             <td>{{ application.createdAt | date }}</td>
         </tr>
         <tr>
-            <td>Статус заявки</td>
+            <td>Статус заявления</td>
             <td>
                 {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
                     <span class="badge badge-secondary">В очереди</span>
                 {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
-                    <span class="badge badge-success">Принятно</span>
+                    <span class="badge badge-success">Принято</span>
                 {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
                     <span class="badge badge-danger">Отклонено</span>
                 {% endif %}
@@ -53,8 +61,9 @@
         </tr>
     </table>
 
-    <h2>Транспорт</h2>
-    <br />
+    <div class="subtitle-title-block">
+        <h3>Сотрудники</h3>
+    </div>
 
     <table class="table">
         {% for car in application.cars %}
@@ -62,7 +71,7 @@
                 <td>ФИО сотрудника</td>
                 <td>{{ car.driverFullName }}</td>
             </tr>
-            <tr>
+            <tr class="bordered-line">
                 <td>Марка авто и госномер</td>
                 <td>{{ car.carIdentifier }}</td>
             </tr>

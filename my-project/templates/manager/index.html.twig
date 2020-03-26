@@ -37,7 +37,7 @@
 
     {# total items count #}
     <div class="count">
-        Всего заявок: {{ pagination.getTotalItemCount }}
+        Всего заявлений: {{ pagination.getTotalItemCount }}
     </div>
     <table class="table">
         <tr>
@@ -70,12 +70,12 @@
                     {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
                         <span class="badge badge-secondary">В очереди</span>
                     {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
-                        <span class="badge badge-success">Принятно</span>
+                        <span class="badge badge-success">Принято</span>
                     {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
                         <span class="badge badge-danger">Отклонено</span>
                     {% endif %}
                 </td>
-                <td><a class="btn btn-primary" href="{{ url('manager_view', {id: application.id}) }}">Рассмотреть заявку</a></td>
+                <td><a class="btn btn-primary" href="{{ url('manager_view', {id: application.id}) }}">Рассмотреть заявление</a></td>
                 <{#td>{{ application.date | date('Y-m-d') }}, {{ application.time | date('H:i:s') }}</td>#}
             </tr>
         {% endfor %}
