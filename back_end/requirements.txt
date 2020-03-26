@@ -3,3 +3,4 @@ django-jet==1.0.8
 django-cors-headers==3.2.1
 djangorestframework==3.11.0
 mysqlclient==1.4.6
+django-environ==0.4.5
