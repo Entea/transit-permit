@@ -102,6 +102,7 @@ class ManagerController extends AbstractController
 
             /** @var Application $application */
             $application = $form->getData();
+            $application->setReviewedBy($this->getUser()->getUsername());
             $application->setReviewedAt(new \DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();

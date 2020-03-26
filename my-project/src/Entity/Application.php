@@ -78,6 +78,11 @@ class Application
     private $officerFullName;
 
     /**
+     * @ORM\Column(type="text", length=255, nullable=true)
+     */
+    private $reviewedBy;
+
+    /**
      * @ORM\Column(type="date", nullable=true)
      */
     private $reviewedAt;
@@ -302,6 +307,18 @@ class Application
                 $car->setApplication(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReviewedBy(): ?string
+    {
+        return $this->reviewedBy;
+    }
+
+    public function setReviewedBy(?string $reviewedBy): self
+    {
+        $this->reviewedBy = $reviewedBy;
 
         return $this;
     }
