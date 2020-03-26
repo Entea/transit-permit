@@ -1,10 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_manager.html.twig' %}
 {% form_theme form '_form/bootstrap_4_horizontal_layout.html.twig' %}
 
-{% block body %}
+{% block page_title %}
+    <div class="manager-title-block">
+        <div class="container"><h3>Список всех заявлений</h3></div>
+    </div>
+{% endblock %}
 
-    <h2>Список всех заявлений</h2>
-    <hr />
+{% block body %}
 
     <h4>Форма поиска и фильтрации:</h4>
 

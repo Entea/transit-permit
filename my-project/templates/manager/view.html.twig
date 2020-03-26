@@ -1,7 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_manager.html.twig' %}
 {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
 
+{% block page_title %}
+    <div class="manager-title-block">
+        <div class="container"><h3>Просмотр заявления</h3></div>
+    </div>
+{% endblock %}
+
+
 {% block body %}
+
 
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}
@@ -12,8 +20,6 @@
         {% endfor %}
     {% endfor %}
 
-    <h2>Информация заявки </h2>
-    <br />
     <table class="table">
         <tr>
             <td>Дата создания</td>
@@ -63,8 +69,9 @@
         </tr>
     </table>
 
-    <h2>Транспорт</h2>
-    <br />
+    <div class="subtitle-title-block">
+        <h3>Транспорт</h3>
+    </div>
 
     <table class="table">
         {% for car in application.cars %}
@@ -83,9 +90,12 @@
         {% endfor %}
     </table>
 
+
     {% if application.reviewedAt is not empty %}
-        <h2>Результаты рассмотрения</h2>
-        <br />
+        <div class="subtitle-title-block">
+            <h3>Результаты рассмотрения</h3>
+        </div>
+        <br/>
 
         <table class="table">
             <tr>
@@ -109,20 +119,22 @@
                     <td>Причина отклонения</td>
                     <td>{{ application.declinedReason }}</td>
                 </tr>
-             {% endif %}
+            {% endif %}
             <tr>
                 <td>Имя проверяющего</td>
                 <td>{{ application.officerFullName }}</td>
             </tr>
             <tr>
                 <td>Дата рассмотрения</td>
-                <td>{{ application.reviewedAt | date  }}</td>
+                <td>{{ application.reviewedAt | date }}</td>
             </tr>
         </table>
     {% endif %}
 
-    <h2>Поменять статус</h2>
-    <br />
+    <div class="subtitle-title-block">
+        <h3>Поменять статус</h3>
+    </div>
+    <br/>
 
     {{ form_start(form) }}
 
@@ -134,12 +146,13 @@
 
     {{ form_end(form) }}
 
+
 {% endblock %}
 
 {% block javascripts %}
 
     <script>
-        $(function (){
+        $(function () {
             var $statusElement = $('[name="accept_form[status]"]'),
                 $declinedReason = $('[name="accept_form[declinedReason]"]'),
                 $declinedReasonContainer = $declinedReason.closest('.form-group');
@@ -148,7 +161,7 @@
                 $declinedReasonContainer.toggle(parseInt($statusElement.val()) === {{ constant('App\\Entity\\Application::STATUS_DECLINED') }});
                 $declinedReason.focus();
             };
-            $statusElement.change(function (){
+            $statusElement.change(function () {
                 changeReasonVisibility();
             });
             changeReasonVisibility();

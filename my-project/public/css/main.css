@@ -1,0 +1,32 @@
+
+.header-block {
+    margin: 0;
+    background-color: #34495e;
+    border-radius: 0;
+    color: #FFF;
+    height: 75px;
+}
+.title-block {
+    background: #2c3e50;
+    padding: 30px 0;
+    color: #ecf0f1;
+    text-shadow: #000 1px 1px;
+}
+.subtitle-title-block {
+    background: #ecf0f1;
+    padding: 15px 20px;
+    margin: 20px 0;
+}
+.subtitle-title-container {
+    padding: 15px 20px;
+}
+.footer {
+    background-color: #f5f5f5;
+}
+.main-container {
+    margin: 20px 0;
+}
+
+.application-create-form {
+
+}

@@ -1,0 +1,14 @@
+
+.manager-header-block {
+    margin: 0;
+    background-color: #00609e;
+    border-radius: 0;
+    color: #FFF;
+    height: 70px;
+}
+.manager-title-block {
+    background: #094c77;
+    padding: 30px 0;
+    color: #ecf0f1;
+    text-shadow: #000 1px 1px;
+}
