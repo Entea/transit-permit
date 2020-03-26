@@ -42,12 +42,12 @@
 
         <div class="subtitle-title-container">
             <ul class="cars" data-prototype="{{ form_widget(form.cars.vars.prototype)|e('html_attr') }}">
-{#                {% for car in form.cars %}
+                {% for car in form.cars %}
                     <li>
                         {{ form_row(car.driverFullName) }}
                         {{ form_row(car.carIdentifier) }}
                     </li>
-                {% endfor %}#}
+                {% endfor %}
             </ul>
         </div>
 
@@ -122,8 +122,10 @@
                 addCarFormDeleteLink($(this));
             });
 
-            // add one worker by default
-            addCarForm($collectionHolder, $newLinkLi);
+            {% if form.cars is empty %}
+                // add one worker by default
+                addCarForm($collectionHolder, $newLinkLi);
+            {% endif %}
         });
 
     </script>

@@ -112,7 +112,8 @@ class Application
     private $updatedAt;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\Valid()
+     * @Assert\Count(min=1)
      *
      * @ORM\OneToMany(targetEntity="App\Entity\ApplicationCar", mappedBy="application", cascade={"persist"}))
      */
