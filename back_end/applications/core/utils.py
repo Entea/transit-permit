@@ -1,5 +1,6 @@
 import os
 import pyqrcode
+
 from django.conf import settings
 
 
@@ -15,4 +16,4 @@ def generate_qrcode(text, filename, scale=10):
         qr = pyqrcode.create(text)
         qr.png(filename, scale)
 
-    return f'/media/qr_codes/{filename}'
+    return f'{settings.HOSTNAME}/media/qr_codes/{filename}'

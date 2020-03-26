@@ -1,9 +1,11 @@
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 
 from applications.core.models import (
     Application,
     ApplicationCar,
 )
+from applications.core.utils import generate_qrcode
 
 
 class ApplicationCarSerializer(serializers.ModelSerializer):
@@ -28,6 +30,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
     updated_at = serializers.DateField(read_only=True)
     cars = ApplicationCarSerializer(many=True, required=False, write_only=True)
     app_cars = ApplicationCarSerializer(source='applicationcar_set', many=True, read_only=True)
+    qr = SerializerMethodField(read_only=True)
 
     class Meta:
         model = Application
@@ -35,7 +38,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
             'id', 'uid', 'external_id', 'status', 'declined_reason',
             'officer_full_name', 'reviewed_at', 'created_at', 'updated_at',
             'director_full_name', 'company_iin', 'company_name', 'phone_number',
-            'movement_area', 'email', 'cars', 'app_cars',
+            'movement_area', 'email', 'cars', 'app_cars', 'qr',
         ]
 
     def create(self, validated_data):
@@ -45,3 +48,6 @@ class ApplicationSerializer(serializers.ModelSerializer):
             for car_data in cars_data:
                 ApplicationCar.objects.create(application=instance, **car_data)
         return instance
+
+    def get_qr(self, obj):
+        return generate_qrcode(obj.application_link, f'{obj.uid}.png', 10)

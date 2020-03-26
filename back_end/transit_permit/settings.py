@@ -138,3 +138,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+
+# TODO: change for production mode
+HOSTNAME = 'localhost:8000' if DEBUG else 'mvdlist.me/'
