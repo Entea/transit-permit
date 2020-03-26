@@ -48,3 +48,19 @@ class ApplicationCar(models.Model):
     class Meta:
         managed = False
         db_table = 'application_car'
+
+
+class ApplicationSingle(models.Model):
+    first_name = models.CharField("Имя", max_length=255)
+    middle_name = models.CharField("Отчество", max_length=255)
+    last_name = models.CharField("Фамилия", max_length=255)
+    phone_number = models.CharField("Телефон", max_length=255)
+    reason = models.TextField("Причина")
+    output_time = models.TimeField("Время выхода", auto_now=True)
+    input_time = models.TimeField("Время возрата")
+    home_address = models.CharField("Адрес места жителства", max_length=500)
+    destination_address = models.CharField("Адрес пункта назначения", max_length=500)
+
+    class Meta:
+        managed = False
+        db_table = "application_single"

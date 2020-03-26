@@ -3,6 +3,7 @@ from rest_framework import serializers
 from applications.core.models import (
     Application,
     ApplicationCar,
+    ApplicationSingle
 )
 
 
@@ -45,3 +46,11 @@ class ApplicationSerializer(serializers.ModelSerializer):
             for car_data in cars_data:
                 ApplicationCar.objects.create(application=instance, **car_data)
         return instance
+
+
+class ApplicationSingleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ApplicationSingle
+
+    def to_pdf(self):
+        pass

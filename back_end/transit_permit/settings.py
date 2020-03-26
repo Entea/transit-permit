@@ -81,18 +81,23 @@ WSGI_APPLICATION = 'transit_permit.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.mysql'),
+#         'NAME': os.environ.get('SQL_DATABASE', 'transit_permit'),
+#         'USER': os.environ.get('SQL_USER', 'root'),
+#         'PASSWORD': os.environ.get('SQL_PASSWORD', 'mali1995'),
+#         'HOST': os.environ.get('SQL_HOST', '127.0.0.1'),
+#         'PORT': os.environ.get('SQL_PORT', '3306'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('SQL_ENGINE', 'django.db.backends.mysql'),
-        'NAME': os.environ.get('SQL_DATABASE', 'transit_permit'),
-        'USER': os.environ.get('SQL_USER', 'root'),
-        'PASSWORD': os.environ.get('SQL_PASSWORD', 'mali1995'),
-        'HOST': os.environ.get('SQL_HOST', '127.0.0.1'),
-        'PORT': os.environ.get('SQL_PORT', '3306'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'my_db',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

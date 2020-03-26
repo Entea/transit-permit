@@ -1,12 +1,15 @@
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg.views import get_schema_view
-from rest_framework.generics import CreateAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
 
-from applications.core.models import Application
-from applications.core.serializers import ApplicationSerializer
+from applications.core.models import Application, ApplicationSingle
+from applications.core.serializers import (
+    ApplicationSerializer,
+    ApplicationSingleSerializer
+)
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -47,3 +50,14 @@ class ApplicationRetrieveAPIView(RetrieveAPIView):
                 {'detail': [f'An application with uid:: {uid} doesn\'t exist']}, status=status.HTTP_404_NOT_FOUND)
         serializer = ApplicationSerializer(instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class ApplicationSingleAPIView(GenericAPIView):
+    serializer_class = ApplicationSingleSerializer
+    queryset = ApplicationSingle.objects.all()
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        application = serializer.save()
+
