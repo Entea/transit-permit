@@ -32,10 +32,10 @@
 
             <div class="row">
                 <div class="col">
-                    <h3>Сотрудники</h3>
+                    <h3>Транспортные средства</h3>
                 </div>
                 <div class="col text-right">
-                    <button type="button" class="btn btn-primary add_car_link">Добавить сотрудника</button>
+                    <button type="button" class="btn btn-primary add_car_link">Добавить ТС</button>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
             <ul class="cars" data-prototype="{{ form_widget(form.cars.vars.prototype)|e('html_attr') }}">
                 {% for car in form.cars %}
                     <li>
-                        {{ form_row(car.driverFullName) }}
+                        {#{{ form_row(car.driverFullName) }}#}
                         {{ form_row(car.carIdentifier) }}
                     </li>
                 {% endfor %}

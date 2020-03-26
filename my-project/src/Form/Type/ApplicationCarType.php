@@ -14,7 +14,7 @@ class ApplicationCarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('driverFullName', TextType::class, ['label' => 'ФИО сотрудника'])
+            /*->add('driverFullName', TextType::class, ['label' => 'ФИО сотрудника'])*/
             ->add('carIdentifier', TextareaType::class, ['label' => 'Марка авто и госномер', 'attr' => ['placeholder' => 'пример: Toyota Ist, 01KG111ABC']])
         ;
     }

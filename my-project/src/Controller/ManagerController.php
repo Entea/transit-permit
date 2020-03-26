@@ -168,11 +168,11 @@ class ManagerController extends AbstractController
                 ->andWhere('a.companyName like :companyName')
                 ->setParameter('companyName', '%' . $data['companyName'] . '%');
         }
-        if (isset($data['driverFullName'])) {
-            $query
-                ->andWhere('c.driverFullName like :driverFullName')
-                ->setParameter('driverFullName', '%' . $data['driverFullName'] . '%');
-        }
+//        if (isset($data['driverFullName'])) {
+//            $query
+//                ->andWhere('c.driverFullName like :driverFullName')
+//                ->setParameter('driverFullName', '%' . $data['driverFullName'] . '%');
+//        }
         if (isset($data['carIdentifier'])) {
             $query
                 ->andWhere('c.carIdentifier like :carIdentifier')
