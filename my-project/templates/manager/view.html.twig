@@ -12,8 +12,11 @@
         {% endfor %}
     {% endfor %}
 
-    <h2>Информация заявки </h2>
-    <br />
+    <h3>Информация заявки </h3>
+
+    <a class="btn-info btn" href="/manager/">Назад к списку</a>
+
+    <hr />
     <table class="table">
         <tr>
             <td>Дата создания</td>
@@ -133,6 +136,9 @@
     {{ form_row(form.save) }}
 
     {{ form_end(form) }}
+
+
+    <a class="btn-info btn" href="/manager/">Назад к списку</a>
 
 {% endblock %}
 
