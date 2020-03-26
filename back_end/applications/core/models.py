@@ -15,7 +15,7 @@ class Application(models.Model):
         STATUS_ACCEPTED = 1
         STATUS_DECLINED = 2
 
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     uid = models.CharField(max_length=255)
     company_name = models.CharField(max_length=255)
     company_iin = models.CharField(max_length=255)
