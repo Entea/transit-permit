@@ -1,11 +1,11 @@
 import React from "react";
 import "./titleBlock.css";
 
-const TitleBlock = () => {
+const TitleBlock = ({ title = "Маршрутный лист", subTitle }) => {
   return (
-    <div>
-      <h2>Маршрутный лист</h2>
-      <span>COVID 19</span>
+    <div className="titleBlock">
+      <h4>{title}</h4>
+      <span>{subTitle}</span>
     </div>
   );
 };
