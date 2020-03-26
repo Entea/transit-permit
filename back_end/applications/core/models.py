@@ -9,6 +9,13 @@ from django.db import models
 
 
 class Application(models.Model):
+
+    class StatusChoices(models.IntegerChoices):
+        STATUS_IN_QUEUED = 0
+        STATUS_ACCEPTED = 1
+        STATUS_DECLINED = 2
+
+    id = models.IntegerField(primary_key=True)
     uid = models.CharField(max_length=255)
     company_name = models.CharField(max_length=255)
     company_iin = models.CharField(max_length=255)
@@ -17,12 +24,14 @@ class Application(models.Model):
     movement_area = models.TextField()
     email = models.CharField(max_length=255)
     external_id = models.CharField(max_length=255, blank=True, null=True)
-    status = models.IntegerField()
+    status = models.IntegerField(
+        default=StatusChoices.STATUS_IN_QUEUED,
+        choices=StatusChoices.choices)
     declined_reason = models.TextField(blank=True, null=True)
     officer_full_name = models.TextField(blank=True, null=True)
     reviewed_at = models.DateField(blank=True, null=True)
-    created_at = models.DateField()
-    updated_at = models.DateField(blank=True, null=True)
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     class Meta:
         managed = False
@@ -30,7 +39,9 @@ class Application(models.Model):
 
 
 class ApplicationCar(models.Model):
-    application = models.ForeignKey(Application, models.DO_NOTHING, blank=True, null=True)
+    id = models.IntegerField(primary_key=True)
+    application = models.ForeignKey(
+        Application, models.CASCADE, blank=True, null=True)
     driver_full_name = models.CharField(max_length=255)
     car_identifier = models.CharField(max_length=255)
 
