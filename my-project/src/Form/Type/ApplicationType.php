@@ -5,6 +5,7 @@ namespace App\Form\Type;
 use App\Entity\Application;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,7 +22,7 @@ class ApplicationType extends AbstractType
             ->add('companyName', TextType::class, ['label' => 'Наименование компании'])
             ->add('phoneNumber', TextType::class, ['label' => 'Номер телефона'])
             ->add('movementArea', TextareaType::class, ['label' => 'Район планируемых перемещений'])
-            ->add('email', TextareaType::class, ['label' => 'Email для получения подтверждения'])
+            ->add('email', EmailType::class, ['label' => 'Email для получения подтверждения'])
             ->add('cars', CollectionType::class, [
                 'label' => false,
                 'entry_type' => ApplicationCarType::class,

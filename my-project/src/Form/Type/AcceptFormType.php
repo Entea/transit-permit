@@ -25,7 +25,7 @@ class AcceptFormType extends AbstractType
                     'Отклонено' => Application::STATUS_DECLINED,
                 ],
             ])
-            ->add('declinedReason', TextareaType::class, ['label' => 'Причина отклонения'])
+            ->add('declinedReason', TextareaType::class, ['label' => 'Причина отклонения', 'required' => false])
             ->add('save', SubmitType::class, ['label' => 'Отправить'])
         ;
     }
