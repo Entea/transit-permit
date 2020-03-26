@@ -8,9 +8,12 @@ security:
         managers_in_memory:
             memory:
                 users:
+                    # ОБЯЗАТЕЛЬНО СМЕНИТЬ ВСЕ ЯВКИ ПОСЛЕ
                     # nuzhnopomenat123
-                    someuser1: { password: '$2y$13$mrChdykH12tSyeBV8I6dr.7jLo2c5zWdFonaje.8MnG8LhcLQSDXe', roles: ['ROLE_MANAGER'] }
-                    someuser2: { password: '$2y$13$mrChdykH12tSyeBV8I6dr.7jLo2c5zWdFonaje.8MnG8LhcLQSDXe', roles: ['ROLE_MANAGER'] }
+                    mdv: { password: '$2y$13$5l/aCZg3rZa4U54VAJGOI.MpXYQmvsDyDz0rrhefnoy3yAUSjgjJ.', roles: ['ROLE_MANAGER'] }
+                    mdv2: { password: '$2y$13$dCoO9VLrZqZrNd7hPxKuo.dbDtwGexUwNrsVuXJfClCD.ZKxlaIkG', roles: ['ROLE_MANAGER'] }
+                    mdv3: { password: '$2y$13$hipkXIUAF9H2g8I3Iz8ZtuFVBxmJ7StE3Lbqroiuiq3Hi.Ge4lqaS', roles: ['ROLE_MANAGER'] }
+                    mdv4: { password: '$2y$13$GMHDlAun7/KvjhVFwLhVsu3t9Q/OpteyaEBWtg.G1jMaV1s00rRz2', roles: ['ROLE_MANAGER'] }
 
     firewalls:
         dev:
@@ -19,6 +22,8 @@ security:
 
         main:
             anonymous: lazy
+            http_basic:
+                realm: Secured Area
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -26,15 +31,9 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
-        manager:
-            provider: managers_in_memory
-            anonymous: false
-            http_basic:
-                realm: Secured Area
-
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: '^/manager', roles: ROLE_MANAGER }
+         - { path: '^/manager', roles: ROLE_MANAGER }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

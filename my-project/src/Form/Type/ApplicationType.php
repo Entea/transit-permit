@@ -29,6 +29,7 @@ class ApplicationType extends AbstractType
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
+                'error_bubbling' => true
             ])
             ->add('save', SubmitType::class, ['label' => 'Отправить форму'])
         ;
