@@ -7,34 +7,56 @@
 {% endblock %}
 
 {% block body %}
+    <div class="row">
+        <div class="col">
+            <div>
+                <div id="qr"></div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="subtitle-title-block">
+                <h3>Номер для сверки</h3>
+            </div>
+            <table class="table">
+                <tr>
+                    <td><b>Номер для сверки заявления</b></td>
+                    <td><b>{{ application.uid }}</b></td>
+                </tr>
+                <tr>
+                    <td>Статус заявления</td>
+                    <td>
+                        {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
+                            <span class="badge badge-secondary">В очереди</span>
+                        {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
+                            <span class="badge badge-success">Принято</span>
+                        {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
+                            <span class="badge badge-danger">Отклонено</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
+                    <tr>
+                        <td>Причина отклонения</td>
+                        <td> {{ application.declinedReason }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td>Дата создания</td>
+                    <td>{{ application.createdAt | date('Y-m-d H:i') }}</td>
+                </tr>
+                <tr>
+                    <td>Заявку проверил</td>
+                    <td>{{ application.officerFullName }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 
     <div class="subtitle-title-block">
         <h3>Информация о компании</h3>
     </div>
 
     <table class="table">
-        <tr>
-            <td>Дата создания</td>
-            <td>{{ application.createdAt | date('Y-m-d H:i') }}</td>
-        </tr>
-        <tr>
-            <td>Статус заявления</td>
-            <td>
-                {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
-                    <span class="badge badge-secondary">В очереди</span>
-                {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
-                    <span class="badge badge-success">Принято</span>
-                {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
-                    <span class="badge badge-danger">Отклонено</span>
-                {% endif %}
-            </td>
-        </tr>
-        {% if application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
-            <tr>
-                <td>Причина отклонения</td>
-                <td> {{ application.declinedReason }}</td>
-            </tr>
-        {% endif %}
         <tr>
             <td>ФИО директора</td>
             <td>{{ application.directorFullName }}</td>
@@ -84,3 +106,17 @@
 
 {% endblock %}
 
+{% block javascripts %}
+    <script>
+        $(function() {
+            new QRCode(document.getElementById("qr"), {
+                text: "{{url}}",
+                width: 400,
+                height: 400,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+    </script>
+{% endblock %}
