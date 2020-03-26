@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class ApplicationType extends AbstractType
 {
@@ -32,6 +34,10 @@ class ApplicationType extends AbstractType
                 'error_bubbling' => true
             ])
             ->add('save', SubmitType::class, ['label' => 'Отправить форму'])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'application',
+            ])
         ;
     }
 
