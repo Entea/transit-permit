@@ -129,7 +129,7 @@ class ManagerController extends AbstractController
         );
         $qrCode = new QrCode($url);
 
-        $html = $this->renderView('emails/result.html.twig', ['application' => $application, 'qrData' => $qrCode->writeDataUri()]);
+        $html = $this->renderView('emails/result.html.twig', ['application' => $application, 'qrData' => $qrCode->writeDataUri(), 'url' => $url]);
 
         $message = (new \Swift_Message('Hello Email'))
             ->setFrom('send@example.com')
