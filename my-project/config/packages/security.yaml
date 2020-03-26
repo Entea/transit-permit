@@ -10,8 +10,10 @@ security:
                 users:
                     # ОБЯЗАТЕЛЬНО СМЕНИТЬ ВСЕ ЯВКИ ПОСЛЕ
                     # nuzhnopomenat123
-                    someuser1: { password: '$2y$13$mrChdykH12tSyeBV8I6dr.7jLo2c5zWdFonaje.8MnG8LhcLQSDXe', roles: ['ROLE_MANAGER'] }
-                    someuser2: { password: '$2y$13$mrChdykH12tSyeBV8I6dr.7jLo2c5zWdFonaje.8MnG8LhcLQSDXe', roles: ['ROLE_MANAGER'] }
+                    mdv: { password: '$2y$13$5l/aCZg3rZa4U54VAJGOI.MpXYQmvsDyDz0rrhefnoy3yAUSjgjJ.', roles: ['ROLE_MANAGER'] }
+                    mdv2: { password: '$2y$13$dCoO9VLrZqZrNd7hPxKuo.dbDtwGexUwNrsVuXJfClCD.ZKxlaIkG', roles: ['ROLE_MANAGER'] }
+                    mdv3: { password: '$2y$13$hipkXIUAF9H2g8I3Iz8ZtuFVBxmJ7StE3Lbqroiuiq3Hi.Ge4lqaS', roles: ['ROLE_MANAGER'] }
+                    mdv4: { password: '$2y$13$GMHDlAun7/KvjhVFwLhVsu3t9Q/OpteyaEBWtg.G1jMaV1s00rRz2', roles: ['ROLE_MANAGER'] }
 
     firewalls:
         dev:
