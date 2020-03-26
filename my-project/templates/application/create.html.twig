@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% form_theme form '_form/bootstrap_4_horizontal_layout.html.twig' %}
 
 {% block body %}
 
@@ -10,7 +10,7 @@
     {{ form_start(form) }}
 
     <div class="row">
-        <div class="col-9">
+        <div class="col">
             {{ form_row(form.directorFullName) }}
             {{ form_row(form.companyIin) }}
             {{ form_row(form.companyName) }}
@@ -62,8 +62,8 @@
         var $collectionHolder;
 
         // setup an "add a car" link
-        var $addCarButton = $('<button type="button" class="btn btn-primary add_car_link">Добавить еще</button>');
-        var $newLinkLi = $('<li></li>').append($addCarButton);
+        var $addCarButton = $('<button type="button" class="btn btn-primary add_car_link">Добавить сотрудника</button>');
+        var $newLinkLi = $('<div></div>').append($addCarButton);
 
         jQuery(document).ready(function () {
             // Get the ul that holds the collection of cars
@@ -80,6 +80,9 @@
                 // add a new car form (see next code block)
                 addCarForm($collectionHolder, $newLinkLi);
             });
+
+            // add one worker by default
+            addCarForm($collectionHolder, $newLinkLi);
         });
 
     </script>

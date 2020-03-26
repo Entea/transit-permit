@@ -55,7 +55,7 @@ class ApplicationController extends AbstractController
             $entityManager->persist($application);
             $entityManager->flush();
 
-            return $this->render('application/success.html.twig');
+            return $this->redirectToRoute('application_success');
         }
 
         return $this->render('application/create.html.twig', [
@@ -81,6 +81,14 @@ class ApplicationController extends AbstractController
         return $this->render('application/view.html.twig', [
             'application' => $application,
         ]);
+    }
+
+    /**
+     * @Route("/application/success", name="application_success")
+     */
+    public function success(Request $request)
+    {
+        return $this->render('application/success.html.twig');
     }
 
     /**

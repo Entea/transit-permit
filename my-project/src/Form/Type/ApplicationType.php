@@ -23,6 +23,7 @@ class ApplicationType extends AbstractType
             ->add('movementArea', TextareaType::class, ['label' => 'Район планируемых перемещений'])
             ->add('email', TextareaType::class, ['label' => 'Email для получения подтверждения'])
             ->add('cars', CollectionType::class, [
+                'label' => false,
                 'entry_type' => ApplicationCarType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
