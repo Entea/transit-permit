@@ -25,7 +25,7 @@ class Application(models.Model):
     email = models.CharField(max_length=255)
     external_id = models.CharField(max_length=255, blank=True, null=True)
     status = models.IntegerField(
-        default=StatusChoices.STATUS_IN_QUEUED,
+        default=StatusChoices.STATUS_IN_QUEUED.value,
         choices=StatusChoices.choices)
     declined_reason = models.TextField(blank=True, null=True)
     officer_full_name = models.TextField(blank=True, null=True)
