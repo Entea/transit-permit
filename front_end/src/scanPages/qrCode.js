@@ -81,7 +81,7 @@ const QRCode = () => {
 
                 <div className="scanResult">
                   <span>Формат: QR-код </span>
-                  <span className="mb-3">Код: {result}</span>
+                  <span className="mb-3">Ссылка: {result}</span>
                   <Button
                     className={
                       "w-100 pl-5 pr-5  btn contacts-form__button scanBtn"
