@@ -93,3 +93,6 @@ db.sqlite3
 
 .idea/
 .vscode/
+
+back_end/staticfiles/
+back_end/mediafiles/

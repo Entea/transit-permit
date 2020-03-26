@@ -1,7 +1,11 @@
 Django==3.0
-django-jet==1.0.8
 django-cors-headers==3.2.1
+django-environ==0.4.5
+django-jet==1.0.8
 djangorestframework==3.11.0
 drf-yasg==1.17.0
 mysqlclient==1.4.6
-django-environ==0.4.5
+pillow==7.0.0
+pypng==0.0.20
+pyqrcode==1.2.1
+pyzbar==0.1.8

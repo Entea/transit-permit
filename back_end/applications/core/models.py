@@ -37,6 +37,10 @@ class Application(models.Model):
         managed = False
         db_table = 'application'
 
+    @property
+    def application_link(self):
+        return f'https://mvdlist.me/application/{self.uid}/view'
+
 
 class ApplicationCar(models.Model):
     id = models.IntegerField(primary_key=True)
