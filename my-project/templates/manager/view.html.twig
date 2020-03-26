@@ -13,99 +13,19 @@
 
 {% block body %}
 
-    {# read and display all flash messages #}
-    {% for label, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="flash-{{ label }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-
-    <table class="table">
-        <tr>
-            <td>Дата создания</td>
-            <td>{{ application.createdAt | date }}</td>
-        </tr>
-        <tr>
-            <td>Статус заявления</td>
-            <td>
-                {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
-                    <span class="badge badge-secondary">В очереди</span>
-                {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
-                    <span class="badge badge-success">Принято</span>
-                {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
-                    <span class="badge badge-danger">Отклонено</span>
-                {% endif %}
-            </td>
-        </tr>
-        {% if application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
-            <tr>
-                <td>Причина отклонения</td>
-                <td> {{ application.declinedReason }}</td>
-            </tr>
-        {% endif %}
-        <tr>
-            <td>ФИО директора</td>
-            <td>{{ application.directorFullName }}</td>
-        </tr>
-        <tr>
-            <td>ИИН компании</td>
-            <td>{{ application.companyIin }}</td>
-        </tr>
-        <tr>
-            <td>Наименование компании</td>
-            <td>{{ application.companyName }}</td>
-        </tr>
-        <tr>
-            <td>Номер телефона</td>
-            <td>{{ application.phoneNumber }}</td>
-        </tr>
-        <tr>
-            <td>Район планируемых перемещений</td>
-            <td>{{ application.movementArea }}</td>
-        </tr>
-        <tr>
-            <td>Email для получения подтверждения</td>
-            <td>{{ application.email }}</td>
-        </tr>
-    </table>
 
     <div class="subtitle-title-block">
-        <h3>Транспорт</h3>
+        <h3>Информация о компании</h3>
     </div>
 
-    <table class="table">
-        {% for car in application.cars %}
-            <tr>
-                <td>ФИО сотрудника</td>
-                <td>{{ car.driverFullName }}</td>
-            </tr>
-            <tr>
-                <td>Марка авто и госномер</td>
-                <td>{{ car.carIdentifier }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td>Транспорт не указан</td>
-            </tr>
-        {% endfor %}
-    </table>
-
-
-    {% if application.reviewedAt is not empty %}
-        <div class="subtitle-title-block">
-            <h3>Результаты рассмотрения</h3>
-        </div>
-        <br/>
-
+    <div class="subtitle-title-container">
         <table class="table">
             <tr>
-                <td>Номер заявления</td>
-                <td>{{ application.externalId }}</td>
+                <td>Дата создания</td>
+                <td>{{ application.createdAt | date }}</td>
             </tr>
             <tr>
-                <td>Статус</td>
+                <td>Статус заявления</td>
                 <td>
                     {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
                         <span class="badge badge-secondary">В очереди</span>
@@ -119,38 +39,134 @@
             {% if application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
                 <tr>
                     <td>Причина отклонения</td>
-                    <td>{{ application.declinedReason }}</td>
+                    <td> {{ application.declinedReason }}</td>
                 </tr>
             {% endif %}
             <tr>
-                <td>Имя проверяющего</td>
-                <td>{{ application.officerFullName }}</td>
+                <td>ФИО директора</td>
+                <td>{{ application.directorFullName }}</td>
             </tr>
             <tr>
-                <td>Дата рассмотрения</td>
-                <td>{{ application.reviewedAt | date }}</td>
+                <td>ИИН компании</td>
+                <td>{{ application.companyIin }}</td>
+            </tr>
+            <tr>
+                <td>Наименование компании</td>
+                <td>{{ application.companyName }}</td>
+            </tr>
+            <tr>
+                <td>Номер телефона</td>
+                <td>{{ application.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <td>Район планируемых перемещений</td>
+                <td>{{ application.movementArea }}</td>
+            </tr>
+            <tr>
+                <td>Email для получения подтверждения</td>
+                <td>{{ application.email }}</td>
             </tr>
         </table>
+    </div>
+
+
+    <div class="subtitle-title-block">
+        <h3>Список сотрудников</h3>
+    </div>
+
+    <div class="subtitle-title-container">
+        <table class="table">
+            {% for car in application.cars %}
+                <tr>
+                    <td>ФИО сотрудника</td>
+                    <td>{{ car.driverFullName }}</td>
+                </tr>
+                <tr>
+                    <td>Марка авто и госномер</td>
+                    <td>{{ car.carIdentifier }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>Транспорт не указан</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% if application.reviewedAt is not empty %}
+        <div class="subtitle-title-block">
+            <h3>Результаты рассмотрения</h3>
+        </div>
+
+        <div class="subtitle-title-container">
+
+            <table class="table">
+                <tr>
+                    <td>Номер заявления</td>
+                    <td>{{ application.externalId }}</td>
+                </tr>
+                <tr>
+                    <td>Статус</td>
+                    <td>
+                        {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
+                            <span class="badge badge-secondary">В очереди</span>
+                        {% elseif application.status is constant('App\\Entity\\Application::STATUS_ACCEPTED') %}
+                            <span class="badge badge-success">Принято</span>
+                        {% elseif application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
+                            <span class="badge badge-danger">Отклонено</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if application.status is constant('App\\Entity\\Application::STATUS_DECLINED') %}
+                    <tr>
+                        <td>Причина отклонения</td>
+                        <td>{{ application.declinedReason }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td>Имя проверяющего</td>
+                    <td>{{ application.officerFullName }}</td>
+                </tr>
+                <tr>
+                    <td>Дата рассмотрения</td>
+                    <td>{{ application.reviewedAt | date }}</td>
+                </tr>
+            </table>
+        </div>
     {% endif %}
 
     <div class="subtitle-title-block">
-        <h3>Поменять статус</h3>
+        <h3>Форма рассмотрения заявления</h3>
     </div>
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-success flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="subtitle-title-container">
+        {{ form_start(form) }}
+
+        {{ form_row(form.externalId) }}
+        {{ form_row(form.status) }}
+        {{ form_row(form.declinedReason) }}
+        {{ form_row(form.officerFullName) }}
+
+        <br/>
+        {{ form_widget(form.save) }}
+
+        {{ form_end(form) }}
+    </div>
+
     <br/>
 
-    {{ form_start(form) }}
-
-    {{ form_row(form.externalId) }}
-    {{ form_row(form.status) }}
-    {{ form_row(form.declinedReason) }}
-    {{ form_row(form.officerFullName) }}
-    {{ form_row(form.save) }}
-
-    {{ form_end(form) }}
-
-
-
-    <a class="btn-info btn" href="/manager/">Назад к списку</a>
+    <div class="text-right">
+        <a class="btn-info btn" href="/manager/">Назад к списку</a>
+    </div>
 
 {% endblock %}
 

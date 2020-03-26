@@ -9,18 +9,16 @@
 
 {% block body %}
 
-    <h4>Форма поиска и фильтрации:</h4>
-
     <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#searchFilters" aria-expanded="true" aria-controls="collapseOne">
         Показать/скрыть фильтры
     </button>
 
     {{ form_start(form, {attr: {'class': 'form-inline'}}) }}
+
     <div class="card">
         <div class="card-header collapse" id="searchFilters">
             <div class="row">
                 <div class="col">
-
                 {{ form_row(form.status) }}
                 {{ form_row(form.directorFullName) }}
                 {{ form_row(form.companyIin) }}
@@ -39,9 +37,9 @@
     <div class="count">
         Всего заявлений: {{ pagination.getTotalItemCount }}
     </div>
-    <table class="table">
+    <table class="table table-bordered table-hover">
         <tr>
-            <th scope="col">{{ knp_pagination_sortable(pagination, 'Номер заявления', 'a.externalId') }}</th>
+            <th scope="col">{{ knp_pagination_sortable(pagination, '№ заявления', 'a.externalId') }}</th>
             <th{% if pagination.isSorted('a.companyName') %} class="sorted"{% endif %} scope="col">
                 {{ knp_pagination_sortable(pagination, 'Наименование компании', 'a.companyName') }}
             </th>
@@ -50,6 +48,9 @@
             </th>
             <th{% if pagination.isSorted(['a.directorFullName']) %} class="sorted"{% endif %} scope="col">
                 {{ knp_pagination_sortable(pagination, 'ФИО директора', 'a.directorFullName') }}
+            </th>
+            <th{% if pagination.isSorted(['a.createdAt']) %} class="sorted"{% endif %} scope="col">
+                {{ knp_pagination_sortable(pagination, 'Дата создания', 'a.createdAt') }}
             </th>
             <th{% if pagination.isSorted(['a.status']) %} class="sorted"{% endif %} scope="col">
                 {{ knp_pagination_sortable(pagination, 'Статус', 'a.status') }}
@@ -62,10 +63,11 @@
         {# table body #}
         {% for application in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td>{{ application.id }}</td>
+                <td>{{ application.externalId }}</td>
                 <td>{{ application.companyName }}</td>
                 <td>{{ application.companyIin }}</td>
                 <td>{{ application.directorFullName }}</td>
+                <td>{{ application.createdAt | date('Y-m-d') }}</td>
                 <td>
                     {% if application.status is constant('App\\Entity\\Application::STATUS_IN_QUEUED') %}
                         <span class="badge badge-secondary">В очереди</span>
@@ -75,8 +77,7 @@
                         <span class="badge badge-danger">Отклонено</span>
                     {% endif %}
                 </td>
-                <td><a class="btn btn-primary" href="{{ url('manager_view', {id: application.id}) }}">Рассмотреть заявление</a></td>
-                <{#td>{{ application.date | date('Y-m-d') }}, {{ application.time | date('H:i:s') }}</td>#}
+                <td><a class="btn btn-sm btn-primary" href="{{ url('manager_view', {id: application.id}) }}">Просмотр</a></td>
             </tr>
         {% endfor %}
     </table>
