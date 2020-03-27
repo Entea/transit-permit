@@ -17,6 +17,8 @@
 
         {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
         {{ form_errors(form) }}
+        {# Дополнительно рисуем ошибки капчи, так как они не появляются в глобальных ошибках формы #}
+        {{ form_errors(form.recaptcha) }}
 
 
         <div class="subtitle-title-container">
@@ -51,6 +53,9 @@
             </ul>
         </div>
 
+        <div class="subtitle-title-container">
+            {{ form_row(form.recaptcha) }}
+        </div>
         {{ form_widget(form.save) }}
 
         {{ form_end(form) }}
