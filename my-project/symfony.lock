@@ -99,6 +99,19 @@
     "endroid/qr-code": {
         "version": "3.5.9"
     },
+    "excelwebzone/recaptcha-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "fd4da7bc71749db65bc83abf5d164bfa9c839cf4"
+        },
+        "files": [
+            "config/packages/dev/ewz_recaptcha.yaml",
+            "config/packages/ewz_recaptcha.yaml"
+        ]
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -127,7 +140,7 @@
         "version": "2.1.1"
     },
     "php": {
-        "version": "7.1"
+        "version": "7.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"

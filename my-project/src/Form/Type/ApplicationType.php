@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints\IsTrue as RecaptchaTrue;
 
 class ApplicationType extends AbstractType
 {
@@ -30,6 +32,20 @@ class ApplicationType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'error_bubbling' => true
+            ])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'label' => 'Защита от автоматических отправок',
+                'attr'        => [
+                    'options' => [
+                        'theme' => 'light',
+                        'type'  => 'image',
+                        'size'  => 'normal'
+                    ]
+                ],
+                'mapped'      => false,
+                'constraints' => [
+                    new RecaptchaTrue()
+                ]
             ])
             ->add('save', SubmitType::class, ['label' => 'Отправить форму'])
         ;
