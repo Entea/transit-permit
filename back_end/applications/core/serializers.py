@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from reportlab.pdfgen import canvas
 from applications.core.models import (
     Application,
     ApplicationCar,
@@ -51,6 +51,10 @@ class ApplicationSerializer(serializers.ModelSerializer):
 class ApplicationSingleSerializer(serializers.ModelSerializer):
     class Meta:
         model = ApplicationSingle
+        exclude = ("id",)
 
     def to_pdf(self):
-        pass
+        pdf = canvas.Canvas("new_pdf.pdf")
+        pdf.setTitle("Destination list")
+        pdf.drawCentredString(300, 700, ' ')
+        pdf.save()

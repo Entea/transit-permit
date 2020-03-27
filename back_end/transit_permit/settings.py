@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'applications.core',
+    'applications',
 
     'drf_yasg',
     'rest_framework',
@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'transit_permit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'my_db',
+        'NAME': 'my_db.sqlite3',
     }
 }
 

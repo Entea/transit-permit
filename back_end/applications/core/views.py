@@ -59,5 +59,7 @@ class ApplicationSingleAPIView(GenericAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        application = serializer.save()
+        serializer.save()
+        serializer.to_pdf()
+        return Response({'detail': serializer.data})
 

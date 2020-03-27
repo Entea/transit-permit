@@ -1,6 +1,6 @@
 from django.urls import path
 
-from applications.core.views import (
+from .views import (
     ApplicationAPIView,
     ApplicationRetrieveAPIView,
     ApplicationSingleAPIView

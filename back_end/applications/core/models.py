@@ -62,5 +62,6 @@ class ApplicationSingle(models.Model):
     destination_address = models.CharField("Адрес пункта назначения", max_length=500)
 
     class Meta:
-        managed = False
-        db_table = "application_single"
+        verbose_name = "Анкета физ. лиц"
+        verbose_name_plural = "Анкеты физ. лиц"
+
