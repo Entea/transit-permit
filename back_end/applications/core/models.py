@@ -52,7 +52,7 @@ class ApplicationCar(models.Model):
 
 
 class ApplicationSingle(models.Model):
-    uid = models.CharField("UID", max_length=255, unique=True)
+    uid = models.CharField("UID", max_length=255, null=True)
     first_name = models.CharField("Имя", max_length=255)
     middle_name = models.CharField("Отчество", max_length=255)
     last_name = models.CharField("Фамилия", max_length=255)
