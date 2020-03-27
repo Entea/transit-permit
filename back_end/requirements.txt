@@ -5,3 +5,6 @@ djangorestframework==3.11.0
 drf-yasg==1.17.0
 mysqlclient==1.4.6
 django-environ==0.4.5
+xhtml2pdf==0.2.4
+reportlab>=3
+django-easy-pdf==0.1.1

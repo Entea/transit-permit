@@ -7,6 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from django.utils.crypto import get_random_string
+from reportlab.pdfgen import canvas
 
 
 class Application(models.Model):
@@ -56,16 +57,20 @@ class ApplicationSingle(models.Model):
     first_name = models.CharField("Имя", max_length=255)
     middle_name = models.CharField("Отчество", max_length=255)
     last_name = models.CharField("Фамилия", max_length=255)
-    phone_number = models.CharField("Телефон", max_length=255)
+    phone_number = models.CharField("Телефон", max_length=10)
     reason = models.TextField("Причина")
     output_time = models.TimeField("Время выхода")
     input_time = models.TimeField("Время возврата")
     home_address = models.CharField("Адрес места жительства", max_length=500)
     destination_address = models.CharField("Адрес пункта назначения", max_length=500)
+    profile_file = models.FileField(upload_to='uploads/profiles/', verbose_name='Анкета')
 
     class Meta:
         verbose_name = "Анкета физ. лиц"
         verbose_name_plural = "Анкеты физ. лиц"
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name} {self.middle_name}'
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
@@ -73,3 +78,12 @@ class ApplicationSingle(models.Model):
             self.uid = get_random_string(length=25)
         super().save(force_insert, force_update, using, update_fields)
 
+
+    def get_profile_filename(self):
+        return f'{self.first_name}-{self.last_name}-{self.middle_name}.pdf'
+
+    def to_pdf(self):
+        pdf = canvas.Canvas(self.get_profile_filename())
+        pdf.setTitle("Destination list")
+        pdf.drawCentredString(300, 700, '')
+        pdf.save()
