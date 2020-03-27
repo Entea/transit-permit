@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.utils.crypto import get_random_string
 
 
 class Application(models.Model):
@@ -51,17 +52,24 @@ class ApplicationCar(models.Model):
 
 
 class ApplicationSingle(models.Model):
+    uid = models.CharField("UID", max_length=255, unique=True)
     first_name = models.CharField("Имя", max_length=255)
     middle_name = models.CharField("Отчество", max_length=255)
     last_name = models.CharField("Фамилия", max_length=255)
     phone_number = models.CharField("Телефон", max_length=255)
     reason = models.TextField("Причина")
-    output_time = models.TimeField("Время выхода", auto_now=True)
-    input_time = models.TimeField("Время возрата")
-    home_address = models.CharField("Адрес места жителства", max_length=500)
+    output_time = models.TimeField("Время выхода")
+    input_time = models.TimeField("Время возврата")
+    home_address = models.CharField("Адрес места жительства", max_length=500)
     destination_address = models.CharField("Адрес пункта назначения", max_length=500)
 
     class Meta:
         verbose_name = "Анкета физ. лиц"
         verbose_name_plural = "Анкеты физ. лиц"
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if not self.uid:
+            self.uid = get_random_string(length=25)
+        super().save(force_insert, force_update, using, update_fields)
 
