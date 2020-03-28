@@ -2,6 +2,7 @@ version: '3'
 
 volumes:
   mysql_data: {}
+  media:
 
 services:
 
@@ -13,6 +14,7 @@ services:
       - db
     volumes:
       - .:/app
+      - media:./uploads
     environment:
       - SQL_DATABASE=transit_db
       - SQL_USER=root

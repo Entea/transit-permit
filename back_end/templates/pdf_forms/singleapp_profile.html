@@ -3,8 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-
+<div class='container'>
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+            <form class="form-horizontal">
+              <fieldset>
+                <legend style="text-align: center">Маршрутный лист</legend>
+                <div class="form-group">
+                  <label class="col-md-12 control-label" htmlFor="Имя">Имя</label>
+                  <div class="col-md-12">
+                    <textarea class="form-control" name="first_name">{{ app.first_name }}</textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12 control-label" htmlFor="last_name">Фамилия</label>
+                  <div class="col-md-12">
+                    <textarea class="form-control" name="last_name">{{ app.last_name }}</textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12 control-label" htmlFor="second_name">Отчество</label>
+                  <div class="col-md-12">
+                    <textarea class="form-control" name="middle_name">{{ app.middle_name }}</textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12 control-label" htmlFor="phone_number">Номер телефона</label>
+                  <div class="col-md-12">
+                    <textarea class="form-control" name="phone_number">{{ app.phone_number }}</textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12 control-label" htmlFor="reason">Причина выхода из дома</label>
+                  <div class="col-md-12">
+                    <textarea class="form-control" id="reason" name="reason">{{ app.reason }}</textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-md-12 control-label">Время ухода</label>
+                      <div class="col-md-12">
+                        <textarea class="form-control" name="output_time">{{ app.output_time }}</textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-md-12 control-label">Время возвращения</label>
+                      <div class="col-md-12">
+                        <textarea class="form-control" name="input_time">{{ app.input_time }}</textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12 control-label" htmlFor="second_name">Место жительства</label>
+                  <div class="col-md-12">
+                    <textarea class="form-control" name="address">{{ app.home_address }}</textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12 control-label" htmlFor="second_name">Адресс пункта назначения</label>
+                  <div class="col-md-12">
+                    <textarea class="form-control" name="destination_address">{{ app.destination_address }}</textarea>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
 </body>
 </html>

@@ -5,9 +5,13 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+import os
 from django.db import models
+from django.utils.text import slugify
+from django.template.loader import render_to_string, get_template
 from django.utils.crypto import get_random_string
-from reportlab.pdfgen import canvas
+from django.conf import settings
+from weasyprint import HTML, CSS
 
 
 class Application(models.Model):
@@ -53,6 +57,9 @@ class ApplicationCar(models.Model):
 
 
 class ApplicationSingle(models.Model):
+
+    TEMPLATE_PATH = 'pdf_forms/singleapp_profile.html'
+
     uid = models.CharField("UID", max_length=255, null=True)
     first_name = models.CharField("Имя", max_length=255)
     middle_name = models.CharField("Отчество", max_length=255)
@@ -63,7 +70,6 @@ class ApplicationSingle(models.Model):
     input_time = models.TimeField("Время возврата")
     home_address = models.CharField("Адрес места жительства", max_length=500)
     destination_address = models.CharField("Адрес пункта назначения", max_length=500)
-    profile_file = models.FileField(upload_to='uploads/profiles/', verbose_name='Анкета')
 
     class Meta:
         verbose_name = "Анкета физ. лиц"
@@ -80,10 +86,17 @@ class ApplicationSingle(models.Model):
 
 
     def get_profile_filename(self):
-        return f'{self.first_name}-{self.last_name}-{self.middle_name}.pdf'
+        first_name = slugify(self.first_name, allow_unicode=True)
+        last_name = slugify(self.last_name, allow_unicode=True)
+        middle_name = slugify(self.middle_name, allow_unicode=True)
+        return f'{first_name}-{last_name}-{middle_name}.pdf'
 
     def to_pdf(self):
-        pdf = canvas.Canvas(self.get_profile_filename())
-        pdf.setTitle("Destination list")
-        pdf.drawCentredString(300, 700, '')
-        pdf.save()
+        context = self.__dict__
+        context['output_time'] = self.output_time.strftime('%H:%M')
+        context['input_time'] = self.input_time.strftime('%H:%M')
+        html = render_to_string(self.TEMPLATE_PATH, {'app': context})
+        filename = self.get_profile_filename()
+        HTML(string=html).write_pdf(os.path.join(settings.MEDIA_ROOT, f'profiles/{filename}'),
+                                    stylesheets=[CSS(string='body { font-family: serif !important }')])
+        return
